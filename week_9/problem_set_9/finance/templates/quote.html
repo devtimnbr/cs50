@@ -1,0 +1,16 @@
+{% extends "layout.html" %} {% block title %} Buy Stock Shares {% endblock %} {% block main %}
+<form action="/quote" method="post" style="max-width: 24rem; margin: 0 auto">
+	<input
+		autofocus
+		required
+		class="form-control mb-3"
+		name="symbol"
+		placeholder="Stock Symbol"
+		type="text" />
+
+	<button class="form-group btn btn-info mb-3" type="submit">Quote</button>
+	{% if invalid %}
+	<div class="alert alert-warning" role="alert">The symbol {{symbol}} is invalid</div>
+	{% endif %}
+</form>
+{% endblock %}

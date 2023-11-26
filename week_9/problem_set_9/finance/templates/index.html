@@ -1,0 +1,31 @@
+{% extends "layout.html" %} {% block title %} Index {% endblock %} {% block main %}
+<table class="table-striped table">
+	<thead>
+		<tr>
+			<th scope="col">Symbol</th>
+			<th scope="col">Shares</th>
+			<th scope="col">Current Price</th>
+			<th scope="col">Total</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for position in positions %}
+		<tr>
+			<td>{{position['symbol']}}</td>
+			<td>{{position['shares']}}</td>
+			<td>{{position['price'] | usd}}</td>
+			<td>{{position['total'] | usd}}</td>
+		</tr>
+		{% endfor %}
+		<tr>
+			<td>CASH</td>
+			<td colspan="2"></td>
+			<td>{{cash | usd}}</td>
+		</tr>
+		<tr>
+			<td colspan="3"></td>
+			<td><b>{{sum | usd}}</b></td>
+		</tr>
+	</tbody>
+</table>
+{% endblock %}

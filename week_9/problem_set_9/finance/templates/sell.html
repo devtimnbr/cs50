@@ -1,0 +1,22 @@
+{% extends "layout.html" %} {% block title %} Buy Stock Shares {% endblock %} {% block main %}
+<form action="/sell" method="post" style="max-width: 24rem; margin: 0 auto">
+	<select name="symbol" class="form-control mb-3" autofocus>
+		{% for position in positions %}
+		<option name="{{position.symbol}}" value="{{position.symbol}}">{{position.symbol}}</option>
+		{% endfor %}
+	</select>
+
+	<input
+		required
+		class="form-control mb-3"
+		name="shares"
+		placeholder="Shares Quantity"
+		type="number"
+		min="1" />
+
+	<button class="form-group btn btn-danger mb-3" type="submit">Sell</button>
+	{% if invalid %}
+	<div class="alert alert-warning" role="alert">Not enough share for symbol {{symbol}}</div>
+	{% endif %}
+</form>
+{% endblock %}
